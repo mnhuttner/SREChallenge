@@ -1,0 +1,111 @@
+++ yum -y remove nginx
+Loaded plugins: fastestmirror, langpacks
+Repository epel is listed more than once in the configuration
+Repository epel-source is listed more than once in the configuration
+Resolving Dependencies
+--> Running transaction check
+---> Package nginx.x86_64 1:1.10.2-1.el7 will be erased
+--> Processing Dependency: nginx for package: 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64
+--> Processing Dependency: nginx for package: 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64
+--> Processing Dependency: nginx for package: 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64
+--> Processing Dependency: nginx for package: 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64
+--> Processing Dependency: nginx for package: 1:nginx-mod-mail-1.10.2-1.el7.x86_64
+--> Processing Dependency: nginx for package: 1:nginx-mod-stream-1.10.2-1.el7.x86_64
+--> Running transaction check
+---> Package nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7 will be erased
+--> Processing Dependency: nginx-mod-http-geoip = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch
+---> Package nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7 will be erased
+---> Package nginx-mod-http-perl.x86_64 1:1.10.2-1.el7 will be erased
+---> Package nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7 will be erased
+---> Package nginx-mod-mail.x86_64 1:1.10.2-1.el7 will be erased
+---> Package nginx-mod-stream.x86_64 1:1.10.2-1.el7 will be erased
+--> Running transaction check
+---> Package nginx-all-modules.noarch 1:1.10.2-1.el7 will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                         Arch       Version             Repository
+                                                                           Size
+================================================================================
+Removing:
+ nginx                           x86_64     1:1.10.2-1.el7      @epel     1.4 M
+Removing for dependencies:
+ nginx-all-modules               noarch     1:1.10.2-1.el7      @epel     0.0  
+ nginx-mod-http-geoip            x86_64     1:1.10.2-1.el7      @epel      21 k
+ nginx-mod-http-image-filter     x86_64     1:1.10.2-1.el7      @epel      24 k
+ nginx-mod-http-perl             x86_64     1:1.10.2-1.el7      @epel      51 k
+ nginx-mod-http-xslt-filter      x86_64     1:1.10.2-1.el7      @epel      24 k
+ nginx-mod-mail                  x86_64     1:1.10.2-1.el7      @epel      99 k
+ nginx-mod-stream                x86_64     1:1.10.2-1.el7      @epel      79 k
+
+Transaction Summary
+================================================================================
+Remove  1 Package (+7 Dependent packages)
+
+Installed size: 1.7 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Erasing    : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   1/8 
+warning: file /usr/share/nginx/modules/mod-http-geoip.conf: remove failed: No such file or directory
+  Erasing    : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            2/8 
+warning: file /usr/share/nginx/modules/mod-http-image-filter.conf: remove failed: No such file or directory
+  Erasing    : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    3/8 
+warning: file /usr/share/nginx/modules/mod-http-perl.conf: remove failed: No such file or directory
+  Erasing    : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         4/8 
+warning: file /usr/share/nginx/modules/mod-mail.conf: remove failed: No such file or directory
+  Erasing    : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       5/8 
+warning: file /usr/share/nginx/modules/mod-stream.conf: remove failed: No such file or directory
+  Erasing    : 1:nginx-all-modules-1.10.2-1.el7.noarch                      6/8 
+  Erasing    : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             7/8 
+warning: file /usr/share/nginx/modules/mod-http-xslt-filter.conf: remove failed: No such file or directory
+  Erasing    : 1:nginx-1.10.2-1.el7.x86_64                                  8/8 
+warning: file /var/log/nginx: remove failed: No such file or directory
+warning: file /usr/share/nginx/html/poweredby.png: remove failed: No such file or directory
+warning: file /usr/share/nginx/html/nginx-logo.png: remove failed: No such file or directory
+warning: file /usr/share/nginx/html/index.html: remove failed: No such file or directory
+warning: file /usr/share/nginx/html/50x.html: remove failed: No such file or directory
+warning: file /usr/share/nginx/html/404.html: remove failed: No such file or directory
+warning: file /etc/nginx/win-utf: remove failed: No such file or directory
+warning: file /etc/nginx/uwsgi_params.default: remove failed: No such file or directory
+warning: file /etc/nginx/uwsgi_params: remove failed: No such file or directory
+warning: file /etc/nginx/scgi_params.default: remove failed: No such file or directory
+warning: file /etc/nginx/scgi_params: remove failed: No such file or directory
+warning: file /etc/nginx/nginx.conf.default: remove failed: No such file or directory
+warning: file /etc/nginx/nginx.conf: remove failed: No such file or directory
+warning: file /etc/nginx/mime.types.default: remove failed: No such file or directory
+warning: file /etc/nginx/mime.types: remove failed: No such file or directory
+warning: file /etc/nginx/koi-win: remove failed: No such file or directory
+warning: file /etc/nginx/koi-utf: remove failed: No such file or directory
+warning: file /etc/nginx/fastcgi_params.default: remove failed: No such file or directory
+warning: file /etc/nginx/fastcgi_params: remove failed: No such file or directory
+warning: file /etc/nginx/fastcgi.conf.default: remove failed: No such file or directory
+warning: file /etc/nginx/fastcgi.conf: remove failed: No such file or directory
+  Verifying  : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             1/8 
+  Verifying  : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         2/8 
+  Verifying  : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       3/8 
+  Verifying  : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   4/8 
+  Verifying  : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            5/8 
+  Verifying  : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    6/8 
+  Verifying  : 1:nginx-1.10.2-1.el7.x86_64                                  7/8 
+  Verifying  : 1:nginx-all-modules-1.10.2-1.el7.noarch                      8/8 
+
+Removed:
+  nginx.x86_64 1:1.10.2-1.el7                                                   
+
+Dependency Removed:
+  nginx-all-modules.noarch 1:1.10.2-1.el7                                       
+  nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7                                    
+  nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7                             
+  nginx-mod-http-perl.x86_64 1:1.10.2-1.el7                                     
+  nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7                              
+  nginx-mod-mail.x86_64 1:1.10.2-1.el7                                          
+  nginx-mod-stream.x86_64 1:1.10.2-1.el7                                        
+
+Complete!
+++ rm -f /etc/ssl/certs/cent1.crt /etc/ssl/private/cent1.key
+++ rm -rf /etc/nginx /var/log/nginx /usr/share/nginx

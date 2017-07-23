@@ -1,6 +1,7 @@
 # Title:  SREChallenge.yml
 #  Desc:  Ansible playbook yaml for installing, configuring, testing web server output
-# Usage:  eg, ansible-playbook -v SREChallenge.yml 2>&1 | tee SREChallenge.out
+# Usage:  eg, ansible-playbook -vvvv SREChallenge.yml 2>&1 | tee SREChallenge.out
+#   Run:  Sun Jul 23 18:41:03 EDT 2017
 # ------------------------------------------------------------------------------------
 ---
 - hosts: localhost
@@ -33,7 +34,6 @@
      file:
        path: /etc/nginx
        state: absent
-     when: not git_exists.stat.exists
 
    - name: Clone Nginx configs
      git:
