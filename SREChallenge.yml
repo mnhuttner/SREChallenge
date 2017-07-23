@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  user: root 
+  become: root
+
+  vars:
+      file_name: SREChallenge.yml
+      server: cent1
+      content: <html> <head> <title>Hello World</title> </head> <body> <h1>Hello World!
+
+  tasks:
+   - name: install packages for CentOS
+     action: yum pkg={{item}}  state=latest update_cache=yes
+     when: ansible_distribution == "CentOS"
+     with_items:
+         - python-devel
+         - python-setuptools
+         - git-core
+         - nginx
+         - perl
+         - openssl
+
+   - name: Check Nginx configs exist
+     stat: path=/etc/nginx/.git
+     register: git_exists
+
+   - name: Remove default Nginx configs
+     file:
+       path: /etc/nginx
+       state: absent
+     when: not git_exists.stat.exists
+
+   - name: Clone Nginx configs
+     git:
+       repo: https://github.com/mnhuttner/SREChallenge/
+       dest: /etc/nginx
+       version: master
+       force: yes
+     when: not git_exists.stat.exists
+
+   - copy: content="{{ content }}" dest="/usr/share/nginx/html/index.html"
+
+   - name: generate SSL key
+     command: openssl genrsa -des3 -passout pass:x -out /tmp/{{ server }}.pass.key 2048
+   - name: check SSL key 1
+     command: cat /tmp/{{ server }}.pass.key
+   - name: generate SSL key 2
+     command: openssl rsa -passin pass:x -in /tmp/{{ server }}.pass.key -out /etc/ssl/private/{{ server }}.key
+   - name: check SSL key output
+     command: cat /etc/ssl/private/{{ server }}.key
+   - name: generate SSL key 3
+     command: openssl req -new -key /etc/ssl/private/{{ server }}.key -out {{ server }}.csr -subj "/C=US/ST=NJ/L=Pennington/O=OrgName/OU=IT/CN={{ server }}"
+   - name: generate SSL key 4
+     command: openssl x509 -req -days 365 -in {{ server }}.csr -signkey /etc/ssl/private/{{ server }}.key -out /etc/ssl/certs/{{ server }}.crt
+
+   - name: Check config
+     command: head /etc/nginx/nginx.conf
+   - service: name=nginx state=started enabled=yes
+   - name: Test config
+     command: nginx -t
+   - name: Check SSL
+     command: echo quit | openssl s_client -connect cent1:443 -state -nbio 2>&1 | grep "^SSL"
+   - name: get default page
+     command: curl -k -A 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0' -v -o content.out -L http://cent1
+   - name: check output
+     command: cat content.out
+   - action: uri url=http://cent1 return_content=yes validate_certs=False
+     register: webpage
+
+
