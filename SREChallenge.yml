@@ -1,3 +1,7 @@
+# Title:  SREChallenge.yml
+#  Desc:  Ansible playbook yaml for installing, configuring, testing web server output
+# Usage:  eg, ansible-playbook -v SREChallenge.yml 2>&1 | tee SREChallenge.out
+# ------------------------------------------------------------------------------------
 ---
 - hosts: localhost
   user: root 
@@ -17,9 +21,10 @@
          - python-setuptools
          - git-core
          - nginx
-         - perl
          - openssl
 
+# ------------------------------------------------------------------------------------
+# Fetch GIT repo content (if needed)
    - name: Check Nginx configs exist
      stat: path=/etc/nginx/.git
      register: git_exists
@@ -38,8 +43,12 @@
        force: yes
      when: not git_exists.stat.exists
 
+# ------------------------------------------------------------------------------------
+# Create default start page
    - copy: content="{{ content }}" dest="/usr/share/nginx/html/index.html"
 
+# ------------------------------------------------------------------------------------
+# Install SSL certs
    - name: generate SSL key
      command: openssl genrsa -des3 -passout pass:x -out /tmp/{{ server }}.pass.key 2048
    - name: check SSL key 1
@@ -53,11 +62,16 @@
    - name: generate SSL key 4
      command: openssl x509 -req -days 365 -in {{ server }}.csr -signkey /etc/ssl/private/{{ server }}.key -out /etc/ssl/certs/{{ server }}.crt
 
+# ------------------------------------------------------------------------------------
+# Check/test NGINX configuration
    - name: Check config
      command: head /etc/nginx/nginx.conf
    - service: name=nginx state=started enabled=yes
    - name: Test config
      command: nginx -t
+
+# ------------------------------------------------------------------------------------
+# Check/test browser service connections
    - name: Check SSL
      command: echo quit | openssl s_client -connect cent1:443 -state -nbio 2>&1 | grep "^SSL"
    - name: get default page
@@ -66,5 +80,21 @@
      command: cat content.out
    - action: uri url=http://cent1 return_content=yes validate_certs=False
      register: webpage
+#   - fail: msg='NGINX index page failed'
+#     when: "'Hello World' not in webpage.stdout"
 
-
+# ------------------------------------------------------------------------------------
+# Ensure firewall is configured
+   - firewalld:
+       service: https
+       permanent: true
+       state: enabled
+   - firewalld:
+       port: 80/tcp
+       permanent: true
+       state: enabled
+   - service: name=firewalld state=started enabled=yes
+   - name: check port services
+     command:  firewall-cmd --list-ports
+     register: openports
+# ------------------------------------------------------------------------------------
