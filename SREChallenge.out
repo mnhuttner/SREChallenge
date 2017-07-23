@@ -10,23 +10,24 @@ TASK [Gathering Facts] *********************************************************
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/setup.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466 `" && echo ansible-tmp-1500849792.54-145128554871466="` echo /root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpMxACvS TO /root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466/setup.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466/ /root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466/setup.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466/setup.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849792.54-145128554871466/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829 `" && echo ansible-tmp-1500850856.47-183178453300829="` echo /root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpwBDjXf TO /root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829/setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829/ /root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829/setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829/setup.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850856.47-183178453300829/" > /dev/null 2>&1 && sleep 0'
 ok: [localhost]
 META: ran handlers
 
-TASK [install packages for CentOS] ********************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:17
+TASK [remove prior nginx] *****************************************************************************************
+task path: /root/GIT/SRE/SREChallenge.yml:19
+Running yum
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676 `" && echo ansible-tmp-1500849796.23-126381866652676="` echo /root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpea8ISJ TO /root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676/yum.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676/ /root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676/yum.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676/yum.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849796.23-126381866652676/" > /dev/null 2>&1 && sleep 0'
-changed: [localhost] => (item=[u'python-devel', u'python-setuptools', u'git-core', u'nginx', u'openssl']) => {
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205 `" && echo ansible-tmp-1500850860.13-123450476801205="` echo /root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpv30HLF TO /root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205/yum.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205/ /root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205/yum.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205/yum.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850860.13-123450476801205/" > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => {
     "changed": true, 
     "invocation": {
         "module_args": {
@@ -39,45 +40,118 @@ changed: [localhost] => (item=[u'python-devel', u'python-setuptools', u'git-core
             "installroot": "/", 
             "list": null, 
             "name": [
-                "python-devel", 
-                "python-setuptools", 
-                "git-core", 
-                "nginx", 
-                "openssl"
+                "nginx"
             ], 
             "skip_broken": false, 
-            "state": "latest", 
+            "state": "absent", 
+            "update_cache": false, 
+            "validate_certs": true
+        }
+    }, 
+    "msg": "Repository epel is listed more than once in the configuration\nRepository epel-source is listed more than once in the configuration\n", 
+    "rc": 0, 
+    "results": [
+        "Loaded plugins: fastestmirror, langpacks\nResolving Dependencies\n--> Running transaction check\n---> Package nginx.x86_64 1:1.10.2-1.el7 will be erased\n--> Processing Dependency: nginx for package: 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64\n--> Processing Dependency: nginx for package: 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64\n--> Processing Dependency: nginx for package: 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64\n--> Processing Dependency: nginx for package: 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64\n--> Processing Dependency: nginx for package: 1:nginx-mod-mail-1.10.2-1.el7.x86_64\n--> Processing Dependency: nginx for package: 1:nginx-mod-stream-1.10.2-1.el7.x86_64\n--> Running transaction check\n---> Package nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7 will be erased\n--> Processing Dependency: nginx-mod-http-geoip = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n---> Package nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7 will be erased\n---> Package nginx-mod-http-perl.x86_64 1:1.10.2-1.el7 will be erased\n---> Package nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7 will be erased\n---> Package nginx-mod-mail.x86_64 1:1.10.2-1.el7 will be erased\n---> Package nginx-mod-stream.x86_64 1:1.10.2-1.el7 will be erased\n--> Running transaction check\n---> Package nginx-all-modules.noarch 1:1.10.2-1.el7 will be erased\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package                         Arch       Version             Repository\n                                                                           Size\n================================================================================\nRemoving:\n nginx                           x86_64     1:1.10.2-1.el7      @epel     1.4 M\nRemoving for dependencies:\n nginx-all-modules               noarch     1:1.10.2-1.el7      @epel     0.0  \n nginx-mod-http-geoip            x86_64     1:1.10.2-1.el7      @epel      21 k\n nginx-mod-http-image-filter     x86_64     1:1.10.2-1.el7      @epel      24 k\n nginx-mod-http-perl             x86_64     1:1.10.2-1.el7      @epel      51 k\n nginx-mod-http-xslt-filter      x86_64     1:1.10.2-1.el7      @epel      24 k\n nginx-mod-mail                  x86_64     1:1.10.2-1.el7      @epel      99 k\n nginx-mod-stream                x86_64     1:1.10.2-1.el7      @epel      79 k\n\nTransaction Summary\n================================================================================\nRemove  1 Package (+7 Dependent packages)\n\nInstalled size: 1.7 M\nDownloading packages:\nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Erasing    : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   1/8 \n  Erasing    : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            2/8 \n  Erasing    : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    3/8 \n  Erasing    : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         4/8 \n  Erasing    : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       5/8 \n  Erasing    : 1:nginx-all-modules-1.10.2-1.el7.noarch                      6/8 \n  Erasing    : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             7/8 \n  Erasing    : 1:nginx-1.10.2-1.el7.x86_64                                  8/8 \nwarning: file /etc/nginx/win-utf: remove failed: No such file or directory\nwarning: file /etc/nginx/uwsgi_params.default: remove failed: No such file or directory\nwarning: file /etc/nginx/uwsgi_params: remove failed: No such file or directory\nwarning: file /etc/nginx/scgi_params.default: remove failed: No such file or directory\nwarning: file /etc/nginx/scgi_params: remove failed: No such file or directory\nwarning: file /etc/nginx/nginx.conf.default: remove failed: No such file or directory\nwarning: /etc/nginx/nginx.conf saved as /etc/nginx/nginx.conf.rpmsave\nwarning: file /etc/nginx/mime.types.default: remove failed: No such file or directory\nwarning: file /etc/nginx/mime.types: remove failed: No such file or directory\nwarning: file /etc/nginx/koi-win: remove failed: No such file or directory\nwarning: file /etc/nginx/koi-utf: remove failed: No such file or directory\nwarning: file /etc/nginx/fastcgi_params.default: remove failed: No such file or directory\nwarning: file /etc/nginx/fastcgi_params: remove failed: No such file or directory\nwarning: file /etc/nginx/fastcgi.conf.default: remove failed: No such file or directory\nwarning: file /etc/nginx/fastcgi.conf: remove failed: No such file or directory\n  Verifying  : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             1/8 \n  Verifying  : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         2/8 \n  Verifying  : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       3/8 \n  Verifying  : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   4/8 \n  Verifying  : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            5/8 \n  Verifying  : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    6/8 \n  Verifying  : 1:nginx-1.10.2-1.el7.x86_64                                  7/8 \n  Verifying  : 1:nginx-all-modules-1.10.2-1.el7.noarch                      8/8 \n\nRemoved:\n  nginx.x86_64 1:1.10.2-1.el7                                                   \n\nDependency Removed:\n  nginx-all-modules.noarch 1:1.10.2-1.el7                                       \n  nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7                                    \n  nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7                             \n  nginx-mod-http-perl.x86_64 1:1.10.2-1.el7                                     \n  nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7                              \n  nginx-mod-mail.x86_64 1:1.10.2-1.el7                                          \n  nginx-mod-stream.x86_64 1:1.10.2-1.el7                                        \n\nComplete!\n"
+    ]
+}
+
+TASK [cleanup old configs] ****************************************************************************************
+task path: /root/GIT/SRE/SREChallenge.yml:24
+Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076 `" && echo ansible-tmp-1500850864.02-197784561214076="` echo /root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpE7rbSm TO /root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076/ /root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850864.02-197784561214076/" > /dev/null 2>&1 && sleep 0'
+ [WARNING]: Consider using file module with state=absent rather than running rm
+changed: [localhost] => {
+    "changed": true, 
+    "cmd": [
+        "rm", 
+        "-rf", 
+        "/etc/ssl/certs/cent1.crt", 
+        "/etc/ssl/private/cent1.key", 
+        "/etc/nginx", 
+        "/var/log/nginx", 
+        "/usr/share/nginx"
+    ], 
+    "delta": "0:00:00.008001", 
+    "end": "2017-07-23 19:01:04.181605", 
+    "invocation": {
+        "module_args": {
+            "_raw_params": "rm -rf /etc/ssl/certs/cent1.crt /etc/ssl/private/cent1.key /etc/nginx /var/log/nginx /usr/share/nginx", 
+            "_uses_shell": false, 
+            "chdir": null, 
+            "creates": null, 
+            "executable": null, 
+            "removes": null, 
+            "warn": true
+        }
+    }, 
+    "rc": 0, 
+    "start": "2017-07-23 19:01:04.173604", 
+    "stderr": "", 
+    "stderr_lines": [], 
+    "stdout": "", 
+    "stdout_lines": []
+}
+
+TASK [install latest packages] ************************************************************************************
+task path: /root/GIT/SRE/SREChallenge.yml:29
+Using module file /usr/lib/python2.7/site-packages/ansible/modules/packaging/os/yum.py
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910 `" && echo ansible-tmp-1500850864.24-96172671111910="` echo /root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpnb6q4e TO /root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910/yum.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910/ /root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910/yum.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910/yum.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850864.24-96172671111910/" > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[u'git-core', u'openssl', u'nginx']) => {
+    "changed": true, 
+    "invocation": {
+        "module_args": {
+            "conf_file": null, 
+            "disable_gpg_check": false, 
+            "disablerepo": null, 
+            "enablerepo": null, 
+            "exclude": null, 
+            "install_repoquery": true, 
+            "installroot": "/", 
+            "list": null, 
+            "name": [
+                "git-core", 
+                "openssl", 
+                "nginx"
+            ], 
+            "skip_broken": false, 
+            "state": "present", 
             "update_cache": true, 
             "validate_certs": true
         }
     }, 
     "item": [
-        "python-devel", 
-        "python-setuptools", 
         "git-core", 
-        "nginx", 
-        "openssl"
+        "openssl", 
+        "nginx"
     ], 
     "msg": "Repository epel is listed more than once in the configuration\nRepository epel-source is listed more than once in the configuration\n", 
     "rc": 0, 
     "results": [
-        "All packages providing python-devel are up to date", 
-        "All packages providing python-setuptools are up to date", 
-        "All packages providing git-core are up to date", 
-        "All packages providing openssl are up to date", 
-        "Loaded plugins: fastestmirror, langpacks\nLoading mirror speeds from cached hostfile\n * base: mirror.lug.udel.edu\n * epel: mirror.cs.princeton.edu\n * extras: mirror.steadfast.net\n * updates: mirrors.usinternet.com\nResolving Dependencies\n--> Running transaction check\n---> Package nginx.x86_64 1:1.10.2-1.el7 will be installed\n--> Processing Dependency: nginx-all-modules = 1:1.10.2-1.el7 for package: 1:nginx-1.10.2-1.el7.x86_64\n--> Running transaction check\n---> Package nginx-all-modules.noarch 1:1.10.2-1.el7 will be installed\n--> Processing Dependency: nginx-mod-stream = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-mail = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-xslt-filter = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-perl = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-image-filter = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-geoip = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Running transaction check\n---> Package nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-http-perl.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-mail.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-stream.x86_64 1:1.10.2-1.el7 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package                         Arch       Version              Repository\n                                                                           Size\n================================================================================\nInstalling:\n nginx                           x86_64     1:1.10.2-1.el7       epel     505 k\nInstalling for dependencies:\n nginx-all-modules               noarch     1:1.10.2-1.el7       epel      16 k\n nginx-mod-http-geoip            x86_64     1:1.10.2-1.el7       epel      23 k\n nginx-mod-http-image-filter     x86_64     1:1.10.2-1.el7       epel      26 k\n nginx-mod-http-perl             x86_64     1:1.10.2-1.el7       epel      35 k\n nginx-mod-http-xslt-filter      x86_64     1:1.10.2-1.el7       epel      25 k\n nginx-mod-mail                  x86_64     1:1.10.2-1.el7       epel      53 k\n nginx-mod-stream                x86_64     1:1.10.2-1.el7       epel      46 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+7 Dependent packages)\n\nTotal download size: 728 k\nInstalled size: 1.7 M\nDownloading packages:\n--------------------------------------------------------------------------------\nTotal                                              1.1 MB/s | 728 kB  00:00     \nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    1/8 \n  Installing : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       2/8 \n  Installing : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         3/8 \n  Installing : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            4/8 \n  Installing : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   5/8 \n  Installing : 1:nginx-1.10.2-1.el7.x86_64                                  6/8 \n  Installing : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             7/8 \n  Installing : 1:nginx-all-modules-1.10.2-1.el7.noarch                      8/8 \n  Verifying  : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             1/8 \n  Verifying  : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    2/8 \n  Verifying  : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       3/8 \n  Verifying  : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         4/8 \n  Verifying  : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            5/8 \n  Verifying  : 1:nginx-all-modules-1.10.2-1.el7.noarch                      6/8 \n  Verifying  : 1:nginx-1.10.2-1.el7.x86_64                                  7/8 \n  Verifying  : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   8/8 \n\nInstalled:\n  nginx.x86_64 1:1.10.2-1.el7                                                   \n\nDependency Installed:\n  nginx-all-modules.noarch 1:1.10.2-1.el7                                       \n  nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7                                    \n  nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7                             \n  nginx-mod-http-perl.x86_64 1:1.10.2-1.el7                                     \n  nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7                              \n  nginx-mod-mail.x86_64 1:1.10.2-1.el7                                          \n  nginx-mod-stream.x86_64 1:1.10.2-1.el7                                        \n\nComplete!\n"
+        "git-1.8.3.1-6.el7_2.1.x86_64 providing git-core is already installed", 
+        "openssl-1:1.0.1e-60.el7_3.1.x86_64 providing openssl is already installed", 
+        "Loaded plugins: fastestmirror, langpacks\nLoading mirror speeds from cached hostfile\n * base: mirror.lug.udel.edu\n * epel: mirror.cs.princeton.edu\n * extras: mirror.steadfast.net\n * updates: mirrors.usinternet.com\nResolving Dependencies\n--> Running transaction check\n---> Package nginx.x86_64 1:1.10.2-1.el7 will be installed\n--> Processing Dependency: nginx-all-modules = 1:1.10.2-1.el7 for package: 1:nginx-1.10.2-1.el7.x86_64\n--> Running transaction check\n---> Package nginx-all-modules.noarch 1:1.10.2-1.el7 will be installed\n--> Processing Dependency: nginx-mod-stream = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-mail = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-xslt-filter = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-perl = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-image-filter = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Processing Dependency: nginx-mod-http-geoip = 1:1.10.2-1.el7 for package: 1:nginx-all-modules-1.10.2-1.el7.noarch\n--> Running transaction check\n---> Package nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-http-perl.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-mail.x86_64 1:1.10.2-1.el7 will be installed\n---> Package nginx-mod-stream.x86_64 1:1.10.2-1.el7 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package                         Arch       Version              Repository\n                                                                           Size\n================================================================================\nInstalling:\n nginx                           x86_64     1:1.10.2-1.el7       epel     505 k\nInstalling for dependencies:\n nginx-all-modules               noarch     1:1.10.2-1.el7       epel      16 k\n nginx-mod-http-geoip            x86_64     1:1.10.2-1.el7       epel      23 k\n nginx-mod-http-image-filter     x86_64     1:1.10.2-1.el7       epel      26 k\n nginx-mod-http-perl             x86_64     1:1.10.2-1.el7       epel      35 k\n nginx-mod-http-xslt-filter      x86_64     1:1.10.2-1.el7       epel      25 k\n nginx-mod-mail                  x86_64     1:1.10.2-1.el7       epel      53 k\n nginx-mod-stream                x86_64     1:1.10.2-1.el7       epel      46 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+7 Dependent packages)\n\nTotal download size: 728 k\nInstalled size: 1.7 M\nDownloading packages:\n--------------------------------------------------------------------------------\nTotal                                              225 kB/s | 728 kB  00:03     \nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    1/8 \n  Installing : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       2/8 \n  Installing : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         3/8 \n  Installing : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            4/8 \n  Installing : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   5/8 \n  Installing : 1:nginx-1.10.2-1.el7.x86_64                                  6/8 \n  Installing : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             7/8 \n  Installing : 1:nginx-all-modules-1.10.2-1.el7.noarch                      8/8 \n  Verifying  : 1:nginx-mod-http-xslt-filter-1.10.2-1.el7.x86_64             1/8 \n  Verifying  : 1:nginx-mod-http-perl-1.10.2-1.el7.x86_64                    2/8 \n  Verifying  : 1:nginx-mod-stream-1.10.2-1.el7.x86_64                       3/8 \n  Verifying  : 1:nginx-mod-mail-1.10.2-1.el7.x86_64                         4/8 \n  Verifying  : 1:nginx-mod-http-image-filter-1.10.2-1.el7.x86_64            5/8 \n  Verifying  : 1:nginx-all-modules-1.10.2-1.el7.noarch                      6/8 \n  Verifying  : 1:nginx-1.10.2-1.el7.x86_64                                  7/8 \n  Verifying  : 1:nginx-mod-http-geoip-1.10.2-1.el7.x86_64                   8/8 \n\nInstalled:\n  nginx.x86_64 1:1.10.2-1.el7                                                   \n\nDependency Installed:\n  nginx-all-modules.noarch 1:1.10.2-1.el7                                       \n  nginx-mod-http-geoip.x86_64 1:1.10.2-1.el7                                    \n  nginx-mod-http-image-filter.x86_64 1:1.10.2-1.el7                             \n  nginx-mod-http-perl.x86_64 1:1.10.2-1.el7                                     \n  nginx-mod-http-xslt-filter.x86_64 1:1.10.2-1.el7                              \n  nginx-mod-mail.x86_64 1:1.10.2-1.el7                                          \n  nginx-mod-stream.x86_64 1:1.10.2-1.el7                                        \n\nComplete!\n"
     ]
 }
 
 TASK [Check Nginx configs exist] **********************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:29
+task path: /root/GIT/SRE/SREChallenge.yml:39
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962 `" && echo ansible-tmp-1500849811.06-263143119322962="` echo /root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpVUzSvQ TO /root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962/stat.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962/ /root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962/stat.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962/stat.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849811.06-263143119322962/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217 `" && echo ansible-tmp-1500850895.67-59088182917217="` echo /root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpQs82Sz TO /root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217/stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217/ /root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217/stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217/stat.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850895.67-59088182917217/" > /dev/null 2>&1 && sleep 0'
 ok: [localhost] => {
     "changed": false, 
     "invocation": {
@@ -97,14 +171,14 @@ ok: [localhost] => {
 }
 
 TASK [Remove default Nginx configs] *******************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:33
+task path: /root/GIT/SRE/SREChallenge.yml:43
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/file.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579 `" && echo ansible-tmp-1500849811.41-263724338648579="` echo /root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpsohj98 TO /root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579/file.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579/ /root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579/file.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579/file.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849811.41-263724338648579/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287 `" && echo ansible-tmp-1500850896.01-243573007349287="` echo /root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpOb1I4V TO /root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287/file.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287/ /root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287/file.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287/file.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850896.01-243573007349287/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "diff": {
@@ -150,16 +224,16 @@ changed: [localhost] => {
 }
 
 TASK [Clone Nginx configs] ****************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:38
+task path: /root/GIT/SRE/SREChallenge.yml:48
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/source_control/git.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522 `" && echo ansible-tmp-1500849811.8-216792529944522="` echo /root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpMbv5wi TO /root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522/git.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522/ /root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522/git.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522/git.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849811.8-216792529944522/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887 `" && echo ansible-tmp-1500850896.39-159982418287887="` echo /root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpCNVzTl TO /root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887/git.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887/ /root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887/git.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887/git.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850896.39-159982418287887/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
-    "after": "487504c933516cbb87391eacc50504f88cc92d84", 
+    "after": "1cf5e6b1fd8f7cb83a5b8e0e1439985d9c7ffed1", 
     "before": null, 
     "changed": true, 
     "invocation": {
@@ -188,22 +262,22 @@ changed: [localhost] => {
 }
 
 TASK [copy] *******************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:48
+task path: /root/GIT/SRE/SREChallenge.yml:57
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/stat.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602 `" && echo ansible-tmp-1500849812.82-36178629654602="` echo /root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmp9nAIgx TO /root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602/stat.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602/ /root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602/stat.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602/stat.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849812.82-36178629654602/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514 `" && echo ansible-tmp-1500850897.67-185964304213514="` echo /root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpNDeAKO TO /root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514/stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514/ /root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514/stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514/stat.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850897.67-185964304213514/" > /dev/null 2>&1 && sleep 0'
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585 `" && echo ansible-tmp-1500849813.02-74505714518585="` echo /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpV4InXy TO /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/source
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/ /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/source && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906 `" && echo ansible-tmp-1500850897.85-3361984958906="` echo /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpFqlp8d TO /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/source
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/ /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/source && sleep 0'
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/files/copy.py
-<127.0.0.1> PUT /tmp/tmpSBrbNt TO /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/copy.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/ /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/copy.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/copy.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> PUT /tmp/tmp23LLHl TO /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/copy.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/ /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/copy.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "checksum": "196596132f1efc20c87322e6b18772f38ac63002", 
@@ -222,7 +296,7 @@ changed: [localhost] => {
             "force": true, 
             "group": null, 
             "mode": null, 
-            "original_basename": "tmpV4InXy", 
+            "original_basename": "tmpFqlp8d", 
             "owner": null, 
             "regexp": null, 
             "remote_src": null, 
@@ -230,7 +304,7 @@ changed: [localhost] => {
             "serole": null, 
             "setype": null, 
             "seuser": null, 
-            "src": "/root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/source", 
+            "src": "/root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/source", 
             "unsafe_writes": null, 
             "validate": null
         }
@@ -240,20 +314,20 @@ changed: [localhost] => {
     "owner": "root", 
     "secontext": "system_u:object_r:httpd_sys_content_t:s0", 
     "size": 72, 
-    "src": "/root/.ansible/tmp/ansible-tmp-1500849813.02-74505714518585/source", 
+    "src": "/root/.ansible/tmp/ansible-tmp-1500850897.85-3361984958906/source", 
     "state": "file", 
     "uid": 0
 }
 
 TASK [generate SSL key] *******************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:52
+task path: /root/GIT/SRE/SREChallenge.yml:61
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313 `" && echo ansible-tmp-1500849813.49-6503449265313="` echo /root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmp99gdsL TO /root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313/ /root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849813.49-6503449265313/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013 `" && echo ansible-tmp-1500850898.23-262497696430013="` echo /root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpijlddQ TO /root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013/ /root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850898.23-262497696430013/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
@@ -266,8 +340,8 @@ changed: [localhost] => {
         "/tmp/cent1.pass.key", 
         "2048"
     ], 
-    "delta": "0:00:00.161578", 
-    "end": "2017-07-23 18:43:33.813160", 
+    "delta": "0:00:00.084059", 
+    "end": "2017-07-23 19:01:38.469697", 
     "invocation": {
         "module_args": {
             "_raw_params": "openssl genrsa -des3 -passout pass:x -out /tmp/cent1.pass.key 2048", 
@@ -280,12 +354,12 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:33.651582", 
-    "stderr": "Generating RSA private key, 2048 bit long modulus\n...................................................+++\n........................+++\ne is 65537 (0x10001)", 
+    "start": "2017-07-23 19:01:38.385638", 
+    "stderr": "Generating RSA private key, 2048 bit long modulus\n.......+++\n.................................+++\ne is 65537 (0x10001)", 
     "stderr_lines": [
         "Generating RSA private key, 2048 bit long modulus", 
-        "...................................................+++", 
-        "........................+++", 
+        ".......+++", 
+        ".................................+++", 
         "e is 65537 (0x10001)"
     ], 
     "stdout": "", 
@@ -293,22 +367,22 @@ changed: [localhost] => {
 }
 
 TASK [check SSL key 1] ********************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:54
+task path: /root/GIT/SRE/SREChallenge.yml:63
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000 `" && echo ansible-tmp-1500849813.86-155550078008000="` echo /root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpCqF9jz TO /root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000/ /root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849813.86-155550078008000/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620 `" && echo ansible-tmp-1500850898.52-225070215275620="` echo /root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpjGAo3V TO /root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620/ /root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850898.52-225070215275620/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
         "cat", 
         "/tmp/cent1.pass.key"
     ], 
-    "delta": "0:00:00.004260", 
-    "end": "2017-07-23 18:43:34.024896", 
+    "delta": "0:00:00.003743", 
+    "end": "2017-07-23 19:01:38.676855", 
     "invocation": {
         "module_args": {
             "_raw_params": "cat /tmp/cent1.pass.key", 
@@ -321,53 +395,53 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:34.020636", 
+    "start": "2017-07-23 19:01:38.673112", 
     "stderr": "", 
     "stderr_lines": [], 
-    "stdout": "-----BEGIN RSA PRIVATE KEY-----\nProc-Type: 4,ENCRYPTED\nDEK-Info: DES-EDE3-CBC,CD24470CE1339330\n\npbWdfCsl7BviHsjbbHg8plWZ6hhelaSb2ab34mcCQ49NQg451ou1Nlitk9/5rmO/\ntjHsHwUAKpt22X2VXReyess+4LgnrfwG4TrD8fGgFin4mCyHfkQPLz8HGHnpwWXj\nCpxuWzgSpnG5Sps/5AsD3kNiIIU0DDl9ID3jHxSVcvLTeJXehzImkYeuJJy3SEQb\n+eo4Bj0BLR1/X8ahLqlGw1jSCv9WMzv+fAaEbs8TQyQIxP13oK8Yw+QjlqTgzjax\nAG39ZJoPKmf6aDgbnjpBmLS+Wx7RPSKD+RTCqvGjs11t7YAgPGJF2MG9Xmw1hMvg\nBH/mZLUWiywOE/MFSGjCUsUrxxMRg2MPu03uVAqvZrK1Y91E/h1ni6IiwyRArcii\nVe055IdGZIIzCAU+JJ8PXL/iZotFunqUANWRmrIMnmwHKoydfltTlvOSpFxLkuTT\nzmKFBmJrr61xoS0DzBc+KhmKNkIjetgzzzT5Bkh99jxTJrodCbubHkTpVD3z8IPs\nu87atL2YkZEmsyAH9CpxfQzXgLICg/7NCXhDJNcZVrBvIny/kPeBp8FX+LNWkp6x\neZpW+aHryjtHZA91uUKWLCmfl6uxshgilWO0AVtsfr5A0L86zamqCTgXlPPRzYL/\nKfcaNjEihJK/cM+TllpUrtIymL4VGJ8JeTyPheiDfBNU+KcJtoh0729Q5aoYXzYy\njba975adgWdbhMQme1zA6JootIBfjHRJKX0QGaRhRqHjZV7kIDzahVbbxCRLleYT\ngfEEZg5SaKIILjABYzUWjLYD94GNNZerjKl3JVTaKOI8tEQqzMO8LKNLhwmFt8uG\nLiuy5pI3IKvljxoCjlx5Xvez568QJd/oKi1AlsBqTbZT64/MVysliJUyVz1grJks\nfVVfJUWWEDrYnUNEHxvMFIg7f+B9OlSzjifkwEBWeJ/e990iFTJys4X60BHZ0YGl\nVhWENDUzd5I4G/2cQxbs5asR1s7ar1Wzq8bze9TvMNobxo/Yg1GeGCJsJoBZ/K0h\no1Vduka3XgsDCTJxXsEVLFi/yzUSlB67XMiG5NtPnzei3XbOXPn65kURXBUgJg1d\n3KkCvS+5NxLJ5dRVSiYG59C4L17kFKoccdErUtIhDoduqPpJNZSaZpUauD7fT5qZ\nYj6hUapk9KhfvBdffWLKSLUg2ccd8XyDoPv/+kZtoPaLJw6mg6Ub9S0eh1LZqkBf\nYsUNYUDlb8yPryWTRA45R33u7TwgZzJcFaJGt9tVVUo3JWip/uanUAUyMgvMARZ3\nzeCQXH2BhG/bI1qgnMk/9PohHLkYECkNtC9XlJ3YyKnhEQ/uFDswB/gq9+51ghI+\nUEkXBFsW7HGeCKiX3EG1puw4wmlgZ6P1QOzQNiZ2yT8cwOKJZu+sepo9G5aG4WpY\nEhqSBbkK5hd+7CHuf3EhBg2Hppk84EdQhbc81hhG8gQ7G6OQsBFSXj4IJ+w3uW/L\nHfuhTiYUe0sXPgagFqvSxR0zMVF6NClzRXDEJh13poKfbqRK58J9tPyd1dv9/sP7\nA0Rj/LnoBnoVZcewsGGlG71ZnRgebKiYpLq40d3sEecbjPZTYEWtBA==\n-----END RSA PRIVATE KEY-----", 
+    "stdout": "-----BEGIN RSA PRIVATE KEY-----\nProc-Type: 4,ENCRYPTED\nDEK-Info: DES-EDE3-CBC,56354CE4776C5548\n\nCJpqRQcD6q+0H+oXToqv2SeivQv6cFKvyNOI3b1qHZMs8X907DpOdgj+BzXma0KV\nUbGtspLSkuT9hFUxmVohAEvqjCSh9mxeg/D7BXszMhGGvESakqtur7+Gge6pA3oM\ntqJR4p5yRJirEXLSD/97C+aKZ8fk7wJF6zoiQVPYnNr+rVqpmdpAt3oye+G+uNzu\nqyPLtgnegpSKchxEkJqJoJFqtBJERYfUdcjaA5fVBU2/n5+oZDJJQ9Z/7/BubnPp\n2ZuRcU34JupxqplHwSPsnT50HgaqErjLoxabOqWMIt8IMJf5E+LLSMSHpVd0EBcF\n8iDwmdrw1cZeTt1fMKfxSa83+NPgkYH/6DKv5L03HCE9Gm7GBYgz2vekPvyi4OCW\n88hKvvp0VOtPShat66srIyCwASFP4vtigcaxMSc8J3/vtSoxn0wXKU7zEoCzJgoj\nIR888Opm2uvOjk8wr0db7FLio3rFCGPOtfulK+5JAM3OmJCYUeBuxoXOffRWKuAP\nD45BfOqdzxmKJavV6eUAoFLvooE29tbQeD0flI9prJeRa9wDT340jnjvEbcqWkfq\nicE36KqdQJJB5X4CYrddNTucVS1qkhJ7sFOWE4mHYSkOnkzyktOVMWmEG2NJ8DPZ\nJoYNg3Nqnuh0e4hjWhpimKlO5nYsRJcMUJ9tWa2EtGyWN44BR/tB+o551p84JYQ1\nCytN0/R0KVnY030zIX7TC0qX0gYcuTiYe6nnEbzx5F0doXnem5X+eS+Tw7E9jxx6\nAmX1WbqHTC50Hy99wVcIh1S1Y4Wa0w7r9Bugj2racUN/AqkqZIzuOsgOERtsMIdG\nu1Ar0N2YovXtFZueikYjnW4DFhxcYrwl2FtoZGQi2fQVy1Ojbaqktdt+3PZYZ0Ht\nbMfXftx4b44sptG7icJl6UZlTOp+KplwZaBLthIpqdMe4QSprGNCx4a9fTr7FiNF\nSlWWy/6Q6YmfAL025jqG1C/qr7yDPRaEOlF1PohB5XWZH7qgXf4PvoPgXISL1rvS\nNnkBlFaE38fdiOAeI32WLwytMb35TZfWX8XYWkSxCF5PRGWtvJS4AT+ZbkCuHwhG\nyzPEjm36dvYMUrE21ar1fmVeRkfJfNiVYCYEe9QNmeSGMnxOx6M/RW8PycMRvj8Z\n0E4sw28QGASeIxKwatvP96qqU26+QJv6Os5j3q75zi3Cf1zM8pMt31IuXgTbXH2s\nLH3A44jnFhz7xl+kfQOgKooGnhFg79Qi0yt36WVyHSX5eORHl7Al4VK7qlapt+Hj\nr7x5dpMLzlJRVD+znZZE0+TERW8uK4QyvNt0lgtwD5ojBk9DVhP1wrWSpb3WK63y\nALTyWxGDTQowfZAZdaX3HzaaHpjS6DCzIc4OidRm/Lp+GOQ2HnDccuuXXtdtWxsj\nckEkmuTQ7F/6M/47QxKW0p7Y+w1QvJ1woAwIkakcWhR9jabb97yzzeXPn5VNXQek\n7GTFQMxcXWYwSLvt4vt6F5L9HKNmiwbJvu8ztyZIT/J27SUNWMUhUxkCRE6soLDY\nQJYQ+H+0ziNUtKidga8spblc5r7VVoI8+UVpG9Elohbc0fCOpq4RgvqrDwClagIP\n-----END RSA PRIVATE KEY-----", 
     "stdout_lines": [
         "-----BEGIN RSA PRIVATE KEY-----", 
         "Proc-Type: 4,ENCRYPTED", 
-        "DEK-Info: DES-EDE3-CBC,CD24470CE1339330", 
+        "DEK-Info: DES-EDE3-CBC,56354CE4776C5548", 
         "", 
-        "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", 
+        "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", 
         "-----END RSA PRIVATE KEY-----"
     ]
 }
 
 TASK [generate SSL key 2] *****************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:56
+task path: /root/GIT/SRE/SREChallenge.yml:65
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132 `" && echo ansible-tmp-1500849814.08-237739190162132="` echo /root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpm3cj7v TO /root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132/ /root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849814.08-237739190162132/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850 `" && echo ansible-tmp-1500850898.74-147385261255850="` echo /root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpNdB2rg TO /root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850/ /root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850898.74-147385261255850/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
@@ -380,8 +454,8 @@ changed: [localhost] => {
         "-out", 
         "/etc/ssl/private/cent1.key"
     ], 
-    "delta": "0:00:00.007712", 
-    "end": "2017-07-23 18:43:34.252796", 
+    "delta": "0:00:00.007635", 
+    "end": "2017-07-23 19:01:38.896699", 
     "invocation": {
         "module_args": {
             "_raw_params": "openssl rsa -passin pass:x -in /tmp/cent1.pass.key -out /etc/ssl/private/cent1.key", 
@@ -394,7 +468,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:34.245084", 
+    "start": "2017-07-23 19:01:38.889064", 
     "stderr": "writing RSA key", 
     "stderr_lines": [
         "writing RSA key"
@@ -404,22 +478,22 @@ changed: [localhost] => {
 }
 
 TASK [check SSL key output] ***************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:58
+task path: /root/GIT/SRE/SREChallenge.yml:67
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118 `" && echo ansible-tmp-1500849814.3-251454579319118="` echo /root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpgi5qfh TO /root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118/ /root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849814.3-251454579319118/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986 `" && echo ansible-tmp-1500850898.94-40880388392986="` echo /root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmppyDjCM TO /root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986/ /root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850898.94-40880388392986/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
         "cat", 
         "/etc/ssl/private/cent1.key"
     ], 
-    "delta": "0:00:00.003815", 
-    "end": "2017-07-23 18:43:34.460162", 
+    "delta": "0:00:00.003727", 
+    "end": "2017-07-23 19:01:39.101861", 
     "invocation": {
         "module_args": {
             "_raw_params": "cat /etc/ssl/private/cent1.key", 
@@ -432,50 +506,50 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:34.456347", 
+    "start": "2017-07-23 19:01:39.098134", 
     "stderr": "", 
     "stderr_lines": [], 
-    "stdout": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAr5bGHxmj9Z83/e0IGdG/zECVDg5rz+q2FgcbysnBGfHvglZ7\n3cSeOJLBLQ912FFXQWGUylYsw9GEl9Yz9f65CRHoynVl7VRPaIGCfqb7aoTI5LXc\nTf9lvtGJYYX34TCO9w5w1EUO5+PHM47cVV0MBaH0vmOGfYwdo0FMU28mb+u1bLiy\nLHi5vsMHiVvZg0RUpg2VKNbZAJS5TAUacYMaOwzmCxqhQsYCutitirAmdf9g5Lzt\n26HMSBfXZ7y11X5envGmdoi6aPkk2sMtEeKG+Ytf+RsuAfGxKkx6hPT1pu/fBFVH\nF+3qJugIgDq2maXwfb0GjU7wG6by19sV1s6EgwIDAQABAoIBAQCiL/uKyI1JGKuI\ncgQ0jSjDSrgjhrCRGXTdfe1u79Lc2ztnQekiHDYlfXDP5WLtz5xwOOlNyDGLIqF9\n+o5+X62csh07vRrMED9VAaN+x1CdwE8r6su2g/0AN93U5gDj0Y2MqJsRh0RQb3YV\nqpTciJjNLx65KYcVunG51VviCV4Qq7iEmII/+pvyyRBbk1RfFZAXWS11C8kaP0LY\nT9reRY/lCUEn7bHkqImJS6OxlOn0SDLMRqgmFNTrnDYews9WkknVhJ+VrdhyrLLn\nXRBoDVOxHkFcdrnTKrIe0ggdFWY6Vzo3Sv1fkFpgjsNxBN83HUEW37XT0Lc+l7vb\nHjLmtk0pAoGBAONZ6D2LV5irz2kaSYQFS+hPMgD+W9Nj/64oh+hZr8i2qclrcmhn\nRU85dhnNg/YZTFz7Hu/wVuPY7bfmdBPn8438fSB0r+O6osIo/3I+qnJBI6D0SIsQ\nb3+554RfLcAnlg0ivSyQZagD/7/OpG9V8uELMl2Ky5Bsd3sylI8Si3AnAoGBAMW3\nE0uAL7lAXcpeu3RXL9jhTvd7adBMCkc/IpBpNtRP42NTq/yTjKbCkcoL2qKqcZ01\n1oXVr9t++MoHiET8iRVoH4rHykGxTjif2/rHdIoJyIhFnUL3tufnWrX21JANodqD\nujHWTDqA4wxrVZDcb0yDVwR1dUyuq2l5mTx/gKZFAoGAZ1GZeDaV1VznAjWfCS87\nAtTSvZ7abiO4sxXaRZ5Ug1t3p4B72rRrzAgqAqnh+XofuPWqZpILero/td42DEHR\n7km7N3+v20ca5i+pfuq5nPi7T08UlJYghaQfcYmrifKzfz61R8ZLXGKM3Eb1dV9S\n5DCpb9c+kWCpn8QpvSdJVOsCgYA6G4UrMmBURKuL922GUr14MzefGoFNu5tltxN0\nd8eqfFQq9ANe9wpmVFa+l99I4WkEuDb1HIlTrCx4S+BrzgCH7xMeGXvC9NY1ZB4l\nxQrmKtvp2PPQI7d4zpDlW8a7E5aW/xHw5bd/ljOkicMbEP4Q8aTYZaD0yX0NQbSc\niCiKNQKBgD6yP49ZP2+Do5MewYyWOBw6vaYkfYwGrb20exADj8XEWzi5DEHGYMng\niOD3V+kN8dCiBfttvWlTlRnMAkhoTlVSsagS/GB8sWu37drmG/x6V4vzrHq0sYqT\nZaq+LHe8i2XpdjFeR3XaiMltK0eU2w34QpxIOdJAaBNE0AsK/y3E\n-----END RSA PRIVATE KEY-----", 
+    "stdout": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEAtd9QEW3jYJaw56d0/aSQdTQ0bvbMJjQqCJ1t6D2zlniNAm3P\nAgiUYzmK9J4BtLxBd+W88IJmjDQwhCzl1zp5vQaRPH0EziL62cALa7QBgeDHznVs\nk+549cczdi0V7h2LMKD81joDLdJiHvcPLtzrl9O3qq8YJD06ypXPj3oD98bGzgUy\noc3GWYi2Aoetc/5qE9zIKMbaXdPdUrBxNAV4ozP/nvXJCf2FLsGwoeWdI+/CZW6/\nSEHGOirODiyYI8lcqb3PwzxxhqIR+bJ+X7m49xpvpPr66yX7cpti5eqzIOL4uVnm\n8YC0k8tvJiAc4DLnwoit8MnTl7oe3djR0kD2bQIDAQABAoIBAQCZa0urqDsKm5OX\nltdFr7B8bhFdGauU/qQGqGayZno8EG1DA0aAvKQQH9ZsC238/GFttsrvR9EhrFTQ\n6t7n9FgFcKjLkdqf2ToqvankrPAok2l5a+yvzZcUHXn30oiRWTK1Tth6Dm3oFXTY\nEikoqwvCA8MHpLSEvXH+uulgatk2BXha4buAJLiuVp/kdRiKIOUWerWv9hrCnWtQ\nJMVASxpPyETsKwyWkb4hB+FUJMMcAntSgkWfqpDpBBwvHzSnZ3H+WtXak0GRULuO\nagMlNqpnC0nHiw3zCaHroHlA8yKKewShBqJSoUyCzuocneLVhPWncung1tnL8npy\n9E7XCxuxAoGBANjWxrog3e2hnjIv2K5uVY+A48WSwXXhCEkiOOtCMAsvAVJRov5H\nIMPaIrSd3OIzB9sHWWTxJzfrAwKV3TBEjM8B1rx5C8K/Vfpixbqy0fLXScGzY6cz\nWJ1Lz101r+wrsHluBBTICbC2pq+E0vSelK4mF1HurmcWy6FuAgJQW8BzAoGBANa3\n5+Kly7SMWrIT+JAmWGCDc6WlZU7jCe9xUFwwn5uGTRF9CZ/fvycnlVw9f/aZOzij\ny3wBV+/Zz3lJ/PaFQOsOg39JxwxL0Lpem+y+U6HnoOMzkIW4GbtVJdV8dRHpOXdB\nWuFv7Sfjwj3OyvJEEGIeNYaEwwDpany+sf972RWfAoGAaYeFadpLB7ZrPjOI+cNa\nwp9QurvkiVD+blFIcD5jEV5L/1sZvzSwnoCP+WUGtdNuFEusVvMCSjWG3oA/CJmk\nCa70af9jGOFzn4rofic/BDeAftOmQR49Fzho8A0L1B2jIkXHmLGN/cG2t58l58Ux\nyNti6A4INMWkTqkyMxwWuz8CgYEAy55JG2kIvWXgWEGSFPkYFCZ0VCB96wppEJVP\nlK1TnoQEr9H4f5EKUBI8lOWJZQw42eSSgj0v7DeMhcPBTPJe9smjr+ECDsoS3bn8\necyfuMjUjMEIi5ZjaIA9ya8lwd9+7HWgvmqK5qoZOM3TLV2Yf8OQFMnvtvyjTDr2\nx4Xl/pcCgYA/QhyUPKzzxcFNcOrn3FxPDSBlcb52WdhuOIjiSXGD4SfBW/3V7Vmo\nBFTGmY4UoN2WJYNkgWoUBb6Ly227OMiItanKmhi+uUP3mNbzVC7Kfg9HybLDPc1t\nA+cDDWY2MiTp+56W9SMc5MJrIeoLxdR/xJ7zzIKTIFHqWlCzPKK9cg==\n-----END RSA PRIVATE KEY-----", 
     "stdout_lines": [
         "-----BEGIN RSA PRIVATE KEY-----", 
-        "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", 
+        "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", 
         "-----END RSA PRIVATE KEY-----"
     ]
 }
 
 TASK [generate SSL key 3] *****************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:60
+task path: /root/GIT/SRE/SREChallenge.yml:69
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445 `" && echo ansible-tmp-1500849814.51-179216708008445="` echo /root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpyoXk26 TO /root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445/ /root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849814.51-179216708008445/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859 `" && echo ansible-tmp-1500850899.15-275268882078859="` echo /root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpfjBH_t TO /root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859/ /root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850899.15-275268882078859/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
@@ -489,8 +563,8 @@ changed: [localhost] => {
         "-subj", 
         "/C=US/ST=NJ/L=Pennington/O=OrgName/OU=IT/CN=cent1"
     ], 
-    "delta": "0:00:00.010763", 
-    "end": "2017-07-23 18:43:34.683877", 
+    "delta": "0:00:00.010555", 
+    "end": "2017-07-23 19:01:39.328177", 
     "invocation": {
         "module_args": {
             "_raw_params": "openssl req -new -key /etc/ssl/private/cent1.key -out cent1.csr -subj \"/C=US/ST=NJ/L=Pennington/O=OrgName/OU=IT/CN=cent1\"", 
@@ -503,7 +577,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:34.673114", 
+    "start": "2017-07-23 19:01:39.317622", 
     "stderr": "", 
     "stderr_lines": [], 
     "stdout": "", 
@@ -511,14 +585,14 @@ changed: [localhost] => {
 }
 
 TASK [generate SSL key 4] *****************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:62
+task path: /root/GIT/SRE/SREChallenge.yml:71
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183 `" && echo ansible-tmp-1500849814.73-127445834596183="` echo /root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmphYAq8Z TO /root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183/ /root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849814.73-127445834596183/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869 `" && echo ansible-tmp-1500850899.38-72963646607869="` echo /root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpZwGrJn TO /root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869/ /root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850899.38-72963646607869/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
@@ -534,8 +608,8 @@ changed: [localhost] => {
         "-out", 
         "/etc/ssl/certs/cent1.crt"
     ], 
-    "delta": "0:00:00.020969", 
-    "end": "2017-07-23 18:43:34.915267", 
+    "delta": "0:00:00.021209", 
+    "end": "2017-07-23 19:01:39.549848", 
     "invocation": {
         "module_args": {
             "_raw_params": "openssl x509 -req -days 365 -in cent1.csr -signkey /etc/ssl/private/cent1.key -out /etc/ssl/certs/cent1.crt", 
@@ -548,7 +622,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:34.894298", 
+    "start": "2017-07-23 19:01:39.528639", 
     "stderr": "Signature ok\nsubject=/C=US/ST=NJ/L=Pennington/O=OrgName/OU=IT/CN=cent1\nGetting Private key", 
     "stderr_lines": [
         "Signature ok", 
@@ -560,22 +634,22 @@ changed: [localhost] => {
 }
 
 TASK [Check config] ***********************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:67
+task path: /root/GIT/SRE/SREChallenge.yml:76
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074 `" && echo ansible-tmp-1500849814.96-80576331912074="` echo /root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpeI1Meu TO /root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074/ /root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849814.96-80576331912074/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053 `" && echo ansible-tmp-1500850899.6-58460181854053="` echo /root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmp6Dn0Qh TO /root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053/ /root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850899.6-58460181854053/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
         "head", 
         "/etc/nginx/nginx.conf"
     ], 
-    "delta": "0:00:00.003814", 
-    "end": "2017-07-23 18:43:35.121404", 
+    "delta": "0:00:00.004329", 
+    "end": "2017-07-23 19:01:39.754969", 
     "invocation": {
         "module_args": {
             "_raw_params": "head /etc/nginx/nginx.conf", 
@@ -588,7 +662,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:35.117590", 
+    "start": "2017-07-23 19:01:39.750640", 
     "stderr": "", 
     "stderr_lines": [], 
     "stdout": "# Title: nginx.conf\n#  Dexc: SREChallenge web server (NGINX) configuration file\n#----------------------------------------------------------\nuser nginx;\nworker_processes auto;\nerror_log /var/log/nginx/error.log;\npid /run/nginx.pid;\ninclude /usr/share/nginx/modules/*.conf;\n\nevents {", 
@@ -607,15 +681,15 @@ changed: [localhost] => {
 }
 
 TASK [service] ****************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:69
+task path: /root/GIT/SRE/SREChallenge.yml:78
 Running systemd
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/systemd.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970 `" && echo ansible-tmp-1500849815.3-262657175085970="` echo /root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpwNen0o TO /root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970/systemd.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970/ /root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970/systemd.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970/systemd.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849815.3-262657175085970/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646 `" && echo ansible-tmp-1500850899.94-45282627326646="` echo /root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmp3om4BA TO /root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646/systemd.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646/ /root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646/systemd.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646/systemd.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850899.94-45282627326646/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "enabled": true, 
@@ -636,7 +710,7 @@ changed: [localhost] => {
         "ActiveEnterTimestampMonotonic": "0", 
         "ActiveExitTimestampMonotonic": "0", 
         "ActiveState": "inactive", 
-        "After": "basic.target network.target tmp.mount nss-lookup.target systemd-journald.socket remote-fs.target -.mount system.slice", 
+        "After": "remote-fs.target nss-lookup.target basic.target tmp.mount system.slice -.mount network.target systemd-journald.socket", 
         "AllowIsolate": "no", 
         "AssertResult": "no", 
         "AssertTimestampMonotonic": "0", 
@@ -725,7 +799,7 @@ changed: [localhost] => {
         "RefuseManualStart": "no", 
         "RefuseManualStop": "no", 
         "RemainAfterExit": "no", 
-        "Requires": "-.mount basic.target", 
+        "Requires": "basic.target -.mount", 
         "RequiresMountsFor": "/var/tmp", 
         "Restart": "no", 
         "RestartUSec": "100ms", 
@@ -769,22 +843,22 @@ changed: [localhost] => {
 }
 
 TASK [Test config] ************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:70
+task path: /root/GIT/SRE/SREChallenge.yml:79
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334 `" && echo ansible-tmp-1500849815.72-142542272773334="` echo /root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpLH4C3t TO /root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334/ /root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849815.72-142542272773334/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417 `" && echo ansible-tmp-1500850900.39-242347121292417="` echo /root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpuFQmAm TO /root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417/ /root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850900.39-242347121292417/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
         "nginx", 
         "-t"
     ], 
-    "delta": "0:00:00.027060", 
-    "end": "2017-07-23 18:43:35.906366", 
+    "delta": "0:00:00.025685", 
+    "end": "2017-07-23 19:01:40.586427", 
     "invocation": {
         "module_args": {
             "_raw_params": "nginx -t", 
@@ -797,7 +871,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:35.879306", 
+    "start": "2017-07-23 19:01:40.560742", 
     "stderr": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful", 
     "stderr_lines": [
         "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok", 
@@ -808,14 +882,14 @@ changed: [localhost] => {
 }
 
 TASK [Check SSL] **************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:75
+task path: /root/GIT/SRE/SREChallenge.yml:84
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714 `" && echo ansible-tmp-1500849815.95-195915185639714="` echo /root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmp4rHFFz TO /root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714/ /root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849815.95-195915185639714/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852 `" && echo ansible-tmp-1500850900.66-140295156949852="` echo /root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmp8KHR8h TO /root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852/ /root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850900.66-140295156949852/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
@@ -833,8 +907,8 @@ changed: [localhost] => {
         "grep", 
         "^SSL"
     ], 
-    "delta": "0:00:00.003616", 
-    "end": "2017-07-23 18:43:36.110447", 
+    "delta": "0:00:00.003003", 
+    "end": "2017-07-23 19:01:40.810498", 
     "invocation": {
         "module_args": {
             "_raw_params": "echo quit | openssl s_client -connect cent1:443 -state -nbio 2>&1 | grep \"^SSL\"", 
@@ -847,7 +921,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:36.106831", 
+    "start": "2017-07-23 19:01:40.807495", 
     "stderr": "", 
     "stderr_lines": [], 
     "stdout": "quit | openssl s_client -connect cent1:443 -state -nbio 2>&1 | grep ^SSL", 
@@ -857,14 +931,14 @@ changed: [localhost] => {
 }
 
 TASK [get default page] *******************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:77
+task path: /root/GIT/SRE/SREChallenge.yml:86
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339 `" && echo ansible-tmp-1500849816.16-220048821712339="` echo /root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpdiTfw8 TO /root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339/ /root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849816.16-220048821712339/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724 `" && echo ansible-tmp-1500850900.85-42293806270724="` echo /root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpooIAlG TO /root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724/ /root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850900.85-42293806270724/" > /dev/null 2>&1 && sleep 0'
  [WARNING]: Consider using get_url or uri module rather than running curl
 changed: [localhost] => {
     "changed": true, 
@@ -879,8 +953,8 @@ changed: [localhost] => {
         "-L", 
         "http://cent1"
     ], 
-    "delta": "0:00:00.117831", 
-    "end": "2017-07-23 18:43:36.440421", 
+    "delta": "0:00:00.115224", 
+    "end": "2017-07-23 19:01:41.130675", 
     "invocation": {
         "module_args": {
             "_raw_params": "curl -k -A 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0' -v -o content.out -L http://cent1", 
@@ -893,8 +967,8 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:36.322590", 
-    "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* About to connect() to cent1 port 80 (#0)\n*   Trying 192.168.1.11...\n* Connected to cent1 (192.168.1.11) port 80 (#0)\n> GET / HTTP/1.1\r\n> User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0\r\n> Host: cent1\r\n> Accept: */*\r\n> \r\n< HTTP/1.1 301 Moved Permanently\r\n< Server: nginx/1.10.2\r\n< Date: Sun, 23 Jul 2017 22:43:36 GMT\r\n< Content-Type: text/html\r\n< Content-Length: 185\r\n< Connection: keep-alive\r\n< Location: https://192.168.1.11/\r\n< \r\n* Ignoring the response-body\n{ [data not shown]\n\r100   185  100   185    0     0  37639      0 --:--:-- --:--:-- --:--:-- 46250\n* Connection #0 to host cent1 left intact\n* Issue another request to this URL: 'https://192.168.1.11/'\n* About to connect() to 192.168.1.11 port 443 (#1)\n*   Trying 192.168.1.11...\n* Connected to 192.168.1.11 (192.168.1.11) port 443 (#1)\n* Initializing NSS with certpath: sql:/etc/pki/nssdb\n* skipping SSL peer certificate verification\n* SSL connection using TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\n* Server certificate:\n* \tsubject: CN=cent1,OU=IT,O=OrgName,L=Pennington,ST=NJ,C=US\n* \tstart date: Jul 23 22:43:34 2017 GMT\n* \texpire date: Jul 23 22:43:34 2018 GMT\n* \tcommon name: cent1\n* \tissuer: CN=cent1,OU=IT,O=OrgName,L=Pennington,ST=NJ,C=US\n> GET / HTTP/1.1\r\n> User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0\r\n> Host: 192.168.1.11\r\n> Accept: */*\r\n> \r\n< HTTP/1.1 200 OK\r\n< Server: nginx/1.10.2\r\n< Date: Sun, 23 Jul 2017 22:43:36 GMT\r\n< Content-Type: text/html\r\n< Content-Length: 72\r\n< Last-Modified: Sun, 23 Jul 2017 22:43:33 GMT\r\n< Connection: keep-alive\r\n< ETag: \"59752695-48\"\r\n< Accept-Ranges: bytes\r\n< \r\n{ [data not shown]\n\r100    72  100    72    0     0    658      0 --:--:-- --:--:-- --:--:--   658\n* Connection #1 to host 192.168.1.11 left intact", 
+    "start": "2017-07-23 19:01:41.015451", 
+    "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* About to connect() to cent1 port 80 (#0)\n*   Trying 192.168.1.11...\n* Connected to cent1 (192.168.1.11) port 80 (#0)\n> GET / HTTP/1.1\r\n> User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0\r\n> Host: cent1\r\n> Accept: */*\r\n> \r\n< HTTP/1.1 301 Moved Permanently\r\n< Server: nginx/1.10.2\r\n< Date: Sun, 23 Jul 2017 23:01:41 GMT\r\n< Content-Type: text/html\r\n< Content-Length: 185\r\n< Connection: keep-alive\r\n< Location: https://192.168.1.11/\r\n< \r\n* Ignoring the response-body\n{ [data not shown]\n\r100   185  100   185    0     0  36985      0 --:--:-- --:--:-- --:--:-- 46250\n* Connection #0 to host cent1 left intact\n* Issue another request to this URL: 'https://192.168.1.11/'\n* About to connect() to 192.168.1.11 port 443 (#1)\n*   Trying 192.168.1.11...\n* Connected to 192.168.1.11 (192.168.1.11) port 443 (#1)\n* Initializing NSS with certpath: sql:/etc/pki/nssdb\n* skipping SSL peer certificate verification\n* SSL connection using TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\n* Server certificate:\n* \tsubject: CN=cent1,OU=IT,O=OrgName,L=Pennington,ST=NJ,C=US\n* \tstart date: Jul 23 23:01:39 2017 GMT\n* \texpire date: Jul 23 23:01:39 2018 GMT\n* \tcommon name: cent1\n* \tissuer: CN=cent1,OU=IT,O=OrgName,L=Pennington,ST=NJ,C=US\n> GET / HTTP/1.1\r\n> User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0\r\n> Host: 192.168.1.11\r\n> Accept: */*\r\n> \r\n< HTTP/1.1 200 OK\r\n< Server: nginx/1.10.2\r\n< Date: Sun, 23 Jul 2017 23:01:41 GMT\r\n< Content-Type: text/html\r\n< Content-Length: 72\r\n< Last-Modified: Sun, 23 Jul 2017 23:01:37 GMT\r\n< Connection: keep-alive\r\n< ETag: \"59752ad1-48\"\r\n< Accept-Ranges: bytes\r\n< \r\n{ [data not shown]\n\r100    72  100    72    0     0    686      0 --:--:-- --:--:-- --:--:--   686\n* Connection #1 to host 192.168.1.11 left intact", 
     "stderr_lines": [
         "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current", 
         "                                 Dload  Upload   Total   Spent    Left  Speed", 
@@ -909,7 +983,7 @@ changed: [localhost] => {
         "> ", 
         "< HTTP/1.1 301 Moved Permanently", 
         "< Server: nginx/1.10.2", 
-        "< Date: Sun, 23 Jul 2017 22:43:36 GMT", 
+        "< Date: Sun, 23 Jul 2017 23:01:41 GMT", 
         "< Content-Type: text/html", 
         "< Content-Length: 185", 
         "< Connection: keep-alive", 
@@ -918,7 +992,7 @@ changed: [localhost] => {
         "* Ignoring the response-body", 
         "{ [data not shown]", 
         "", 
-        "100   185  100   185    0     0  37639      0 --:--:-- --:--:-- --:--:-- 46250", 
+        "100   185  100   185    0     0  36985      0 --:--:-- --:--:-- --:--:-- 46250", 
         "* Connection #0 to host cent1 left intact", 
         "* Issue another request to this URL: 'https://192.168.1.11/'", 
         "* About to connect() to 192.168.1.11 port 443 (#1)", 
@@ -929,8 +1003,8 @@ changed: [localhost] => {
         "* SSL connection using TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", 
         "* Server certificate:", 
         "* \tsubject: CN=cent1,OU=IT,O=OrgName,L=Pennington,ST=NJ,C=US", 
-        "* \tstart date: Jul 23 22:43:34 2017 GMT", 
-        "* \texpire date: Jul 23 22:43:34 2018 GMT", 
+        "* \tstart date: Jul 23 23:01:39 2017 GMT", 
+        "* \texpire date: Jul 23 23:01:39 2018 GMT", 
         "* \tcommon name: cent1", 
         "* \tissuer: CN=cent1,OU=IT,O=OrgName,L=Pennington,ST=NJ,C=US", 
         "> GET / HTTP/1.1", 
@@ -940,17 +1014,17 @@ changed: [localhost] => {
         "> ", 
         "< HTTP/1.1 200 OK", 
         "< Server: nginx/1.10.2", 
-        "< Date: Sun, 23 Jul 2017 22:43:36 GMT", 
+        "< Date: Sun, 23 Jul 2017 23:01:41 GMT", 
         "< Content-Type: text/html", 
         "< Content-Length: 72", 
-        "< Last-Modified: Sun, 23 Jul 2017 22:43:33 GMT", 
+        "< Last-Modified: Sun, 23 Jul 2017 23:01:37 GMT", 
         "< Connection: keep-alive", 
-        "< ETag: \"59752695-48\"", 
+        "< ETag: \"59752ad1-48\"", 
         "< Accept-Ranges: bytes", 
         "< ", 
         "{ [data not shown]", 
         "", 
-        "100    72  100    72    0     0    658      0 --:--:-- --:--:-- --:--:--   658", 
+        "100    72  100    72    0     0    686      0 --:--:-- --:--:-- --:--:--   686", 
         "* Connection #1 to host 192.168.1.11 left intact"
     ], 
     "stdout": "", 
@@ -958,22 +1032,22 @@ changed: [localhost] => {
 }
 
 TASK [check output] ***********************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:79
+task path: /root/GIT/SRE/SREChallenge.yml:88
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609 `" && echo ansible-tmp-1500849816.49-37543786189609="` echo /root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpOLEaUt TO /root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609/ /root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849816.49-37543786189609/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517 `" && echo ansible-tmp-1500850901.19-16344851979517="` echo /root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpmggXSo TO /root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517/ /root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850901.19-16344851979517/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
         "cat", 
         "content.out"
     ], 
-    "delta": "0:00:00.003804", 
-    "end": "2017-07-23 18:43:36.654569", 
+    "delta": "0:00:00.004018", 
+    "end": "2017-07-23 19:01:41.347142", 
     "invocation": {
         "module_args": {
             "_raw_params": "cat content.out", 
@@ -986,7 +1060,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:36.650765", 
+    "start": "2017-07-23 19:01:41.343124", 
     "stderr": "", 
     "stderr_lines": [], 
     "stdout": "<html> <head> <title>Hello World</title> </head> <body> <h1>Hello World!", 
@@ -996,14 +1070,14 @@ changed: [localhost] => {
 }
 
 TASK [uri] ********************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:81
+task path: /root/GIT/SRE/SREChallenge.yml:90
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/network/basics/uri.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539 `" && echo ansible-tmp-1500849816.85-144148296507539="` echo /root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpIs9_KM TO /root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539/uri.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539/ /root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539/uri.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539/uri.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849816.85-144148296507539/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878 `" && echo ansible-tmp-1500850901.56-263400562371878="` echo /root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpX_DRrr TO /root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878/uri.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878/ /root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878/uri.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878/uri.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850901.56-263400562371878/" > /dev/null 2>&1 && sleep 0'
 ok: [localhost] => {
     "accept_ranges": "bytes", 
     "changed": false, 
@@ -1011,8 +1085,8 @@ ok: [localhost] => {
     "content": "<html> <head> <title>Hello World</title> </head> <body> <h1>Hello World!", 
     "content_length": "72", 
     "content_type": "text/html", 
-    "date": "Sun, 23 Jul 2017 22:43:37 GMT", 
-    "etag": "\"59752695-48\"", 
+    "date": "Sun, 23 Jul 2017 23:01:41 GMT", 
+    "etag": "\"59752ad1-48\"", 
     "invocation": {
         "module_args": {
             "attributes": null, 
@@ -1055,7 +1129,7 @@ ok: [localhost] => {
             "validate_certs": false
         }
     }, 
-    "last_modified": "Sun, 23 Jul 2017 22:43:33 GMT", 
+    "last_modified": "Sun, 23 Jul 2017 23:01:37 GMT", 
     "msg": "OK (72 bytes)", 
     "redirected": true, 
     "server": "nginx/1.10.2", 
@@ -1064,14 +1138,14 @@ ok: [localhost] => {
 }
 
 TASK [firewalld] **************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:88
+task path: /root/GIT/SRE/SREChallenge.yml:97
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/firewalld.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391 `" && echo ansible-tmp-1500849817.24-120283360822391="` echo /root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpydtI7V TO /root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391/firewalld.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391/ /root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391/firewalld.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391/firewalld.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849817.24-120283360822391/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565 `" && echo ansible-tmp-1500850901.98-22667367385565="` echo /root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpQrOY0F TO /root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565/firewalld.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565/ /root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565/firewalld.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565/firewalld.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850901.98-22667367385565/" > /dev/null 2>&1 && sleep 0'
 ok: [localhost] => {
     "changed": false, 
     "invocation": {
@@ -1094,14 +1168,14 @@ ok: [localhost] => {
 }
 
 TASK [firewalld] **************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:92
+task path: /root/GIT/SRE/SREChallenge.yml:101
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/firewalld.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373 `" && echo ansible-tmp-1500849817.83-125602827036373="` echo /root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmp6PHNIl TO /root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373/firewalld.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373/ /root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373/firewalld.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373/firewalld.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849817.83-125602827036373/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487 `" && echo ansible-tmp-1500850902.59-238094894137487="` echo /root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpQCID4I TO /root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487/firewalld.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487/ /root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487/firewalld.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487/firewalld.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850902.59-238094894137487/" > /dev/null 2>&1 && sleep 0'
 ok: [localhost] => {
     "changed": false, 
     "invocation": {
@@ -1124,15 +1198,15 @@ ok: [localhost] => {
 }
 
 TASK [service] ****************************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:96
+task path: /root/GIT/SRE/SREChallenge.yml:105
 Running systemd
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/systemd.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331 `" && echo ansible-tmp-1500849818.42-113082434727331="` echo /root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpf7jisC TO /root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331/systemd.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331/ /root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331/systemd.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331/systemd.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849818.42-113082434727331/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785 `" && echo ansible-tmp-1500850903.19-211458431509785="` echo /root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpXqA7Fc TO /root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785/systemd.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785/ /root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785/systemd.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785/systemd.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850903.19-211458431509785/" > /dev/null 2>&1 && sleep 0'
 ok: [localhost] => {
     "changed": false, 
     "enabled": true, 
@@ -1155,12 +1229,12 @@ ok: [localhost] => {
         "ActiveExitTimestamp": "Sun 2017-07-23 00:47:48 EDT", 
         "ActiveExitTimestampMonotonic": "42649448627", 
         "ActiveState": "active", 
-        "After": "basic.target system.slice dbus.service polkit.service", 
+        "After": "dbus.service basic.target system.slice polkit.service", 
         "AllowIsolate": "no", 
         "AssertResult": "yes", 
         "AssertTimestamp": "Sun 2017-07-23 10:17:56 EDT", 
         "AssertTimestampMonotonic": "76857360447", 
-        "Before": "libvirtd.service NetworkManager.service shutdown.target network.target", 
+        "Before": "shutdown.target network.target libvirtd.service NetworkManager.service", 
         "BlockIOAccounting": "no", 
         "BlockIOWeight": "18446744073709551615", 
         "BusName": "org.fedoraproject.FirewallD1", 
@@ -1178,7 +1252,7 @@ ok: [localhost] => {
         "ConditionResult": "yes", 
         "ConditionTimestamp": "Sun 2017-07-23 10:17:56 EDT", 
         "ConditionTimestampMonotonic": "76857360447", 
-        "Conflicts": "ebtables.service ipset.service iptables.service ip6tables.service shutdown.target", 
+        "Conflicts": "iptables.service ipset.service ebtables.service shutdown.target ip6tables.service", 
         "ControlGroup": "/system.slice/firewalld.service", 
         "ControlPID": "0", 
         "DefaultDependencies": "yes", 
@@ -1296,22 +1370,22 @@ ok: [localhost] => {
 }
 
 TASK [check port services] ****************************************************************************************
-task path: /root/GIT/SRE/SREChallenge.yml:97
+task path: /root/GIT/SRE/SREChallenge.yml:106
 Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
 <127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
 <127.0.0.1> EXEC /bin/sh -c 'echo ~ && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210 `" && echo ansible-tmp-1500849818.64-40205890348210="` echo /root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210 `" ) && sleep 0'
-<127.0.0.1> PUT /tmp/tmpHflyEq TO /root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210/command.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210/ /root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210/command.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500849818.64-40205890348210/" > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805 `" && echo ansible-tmp-1500850903.41-24922602040805="` echo /root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805 `" ) && sleep 0'
+<127.0.0.1> PUT /tmp/tmpiftbDD TO /root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805/command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805/ /root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805/command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python2 /root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805/command.py; rm -rf "/root/.ansible/tmp/ansible-tmp-1500850903.41-24922602040805/" > /dev/null 2>&1 && sleep 0'
 changed: [localhost] => {
     "changed": true, 
     "cmd": [
         "firewall-cmd", 
         "--list-ports"
     ], 
-    "delta": "0:00:00.451584", 
-    "end": "2017-07-23 18:43:39.253157", 
+    "delta": "0:00:00.463270", 
+    "end": "2017-07-23 19:01:44.029395", 
     "invocation": {
         "module_args": {
             "_raw_params": "firewall-cmd --list-ports", 
@@ -1324,7 +1398,7 @@ changed: [localhost] => {
         }
     }, 
     "rc": 0, 
-    "start": "2017-07-23 18:43:38.801573", 
+    "start": "2017-07-23 19:01:43.566125", 
     "stderr": "", 
     "stderr_lines": [], 
     "stdout": "443/tcp 80/tcp 8080/tcp", 
@@ -1336,5 +1410,5 @@ META: ran handlers
 META: ran handlers
 
 PLAY RECAP ********************************************************************************************************
-localhost                  : ok=23   changed=17   unreachable=0    failed=0   
+localhost                  : ok=25   changed=19   unreachable=0    failed=0   
 
